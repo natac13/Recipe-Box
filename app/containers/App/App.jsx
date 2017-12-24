@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ActionCreators from '../../actions';
+import localForage from 'localforage';
+
 import Display from '../../components/Display/';
 import Main from 'Components/Main/';
 
@@ -11,11 +13,6 @@ class App extends PureComponent {
     super(props);
     console.log(props)
     props.actions.getRecipes();
-  }
-
-
-  componentWillUnmount() {
-    this.props.actions.save();
   }
 
   render() {

@@ -41,6 +41,7 @@ export default class RecipeBox extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
+    this.props.actions.save();
     return this.setState({ recipes: nextProps.recipes });
   }
 
@@ -68,12 +69,12 @@ export default class RecipeBox extends PureComponent {
           <Button
             className={style.editBtn}
             type="button"
-            onClick={() => this.props.actions.show(recipe)}
+            onClick={() => this.props.actions.show(Object.assign({}, recipe, { index: i }))}
           >Edit</Button>
           <Button
             className={style.deleteBtn}
             type="button"
-            onClick={this.props.actions.deleteRecipe}
+            onClick={() => this.props.actions.deleteRecipe(i)}
           >Delete</Button>
         </ButtonGroup>
       </Panel>

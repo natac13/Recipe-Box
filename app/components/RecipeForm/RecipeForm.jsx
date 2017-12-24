@@ -41,12 +41,6 @@ class RecipeForm extends PureComponent {
     };
   }
 
-  componentDidMount() {
-    console.log('mounting', this.props)
-    if (this.props.editing) {
-      this.props.initialize(this.props.editing);
-    }
-  }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -62,6 +56,8 @@ class RecipeForm extends PureComponent {
     if (this.state.editing) {
       // update recipe list with updated recipe
       console.log('UPDATING')
+      this.props.actions.editRecipe({ name, ingredients });
+      return this.props.reset();
     }
     console.log('NOT UPDATING');
     this.props.actions.addRecipe({

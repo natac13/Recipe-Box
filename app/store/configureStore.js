@@ -6,10 +6,12 @@ import rootReducer from '../reducers/';
 // Middlewares
 import { createLogger } from 'redux-logger';
 import apiMiddleware from '../middleware/api.js';
+import recipeFormMiddleware from '../middleware/recipeForm.js';
 
 const loggerMiddleware = createLogger();
 const middlewares = [
   apiMiddleware,
+  recipeFormMiddleware,
 ];
 if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
   middlewares.push(loggerMiddleware); // no need for logging in production...

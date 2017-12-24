@@ -7,11 +7,20 @@ import {
   GET_RECIPES,
 } from 'Constants/';
 
+import { append, remove } from 'ramda';
+
 const initialState = {
   visible: false,
   recipes: [],
   editing: undefined,
 };
+
+
+function update(state, recipe) {
+  const i = state.editing.index;
+  const answer = append(recipe, remove(i, 1, state.recipes))
+  return Object.assign({}, state, { recipes: answer, visible: false, editing: undefined });
+}
 
 
 function recipes(state = [], action) {
@@ -21,9 +30,9 @@ function recipes(state = [], action) {
     case ADD:
       return [...state, action.payload];
     case EDIT:
-      return state;
+      return update(state, action.payload);
     case DELETE:
-      return state;
+      return remove(action.payload, 1, state);
     default:
       return state;
   }
@@ -39,11 +48,12 @@ function reducer(state = initialState, action) {
       return Object.assign({}, state, { visible: false, editing: undefined });
     case GET_RECIPES:
     case ADD:
-    case EDIT:
     case DELETE:
       return Object.assign({},
         state,
-        { recipes: recipes(state.recipes, action), visible: false });
+        { recipes: recipes(state.recipes, action), visible: false, editing: undefined });
+    case EDIT:
+      return Object.assign({}, state, recipes(state, action));
     default:
       return state;
   }
