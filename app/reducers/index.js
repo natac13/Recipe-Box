@@ -5,13 +5,15 @@ import error from './error.js';
 import data from './data.js';
 import recipeForm from './recipeForm.js';
 import {
+  HIDE,
 } from '../constants/';
 
 function clearReducer(state, action) {
   switch (action.type) {
-
-    default:
+    case HIDE:
       return undefined;
+    default:
+      return state;
   }
 }
 const rootReducer = combineReducers(Object.assign(
@@ -19,7 +21,7 @@ const rootReducer = combineReducers(Object.assign(
   {
     error,
     data,
-    form,
+    form: form.plugin({ recipeForm: clearReducer}),
     recipeForm,
   },
 ));

@@ -52,14 +52,11 @@ class RecipeForm extends PureComponent {
   onSubmit = (values) => {
     const { name } = values;
     const ingredients = values.ingredients.split(/,\s?/);
-    console.log('onSubmit values', values);
     if (this.state.editing) {
       // update recipe list with updated recipe
-      console.log('UPDATING')
       this.props.actions.editRecipe({ name, ingredients });
       return this.props.reset();
     }
-    console.log('NOT UPDATING');
     this.props.actions.addRecipe({
       name,
       ingredients,
@@ -79,60 +76,57 @@ class RecipeForm extends PureComponent {
       editing,
     } = this.state;
 
-    console.log('editing', editing);
-
     return (
-      <section className={wrapperClass}>
-        <Modal
-          className={style.modal}
-          show={visible}
-          onHide={this.props.actions.hide}
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Recipe Form</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <form
-              role="recipeForm"
-              className={style.form}
-              onSubmit={this.props.handleSubmit(this.onSubmit)}
-            >
+      <Modal
+        dialogClassName={wrapperClass}
+        show={visible}
+        onHide={this.props.actions.hide}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Recipe Form</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form
+            role="recipeForm"
+            className={style.form}
+            onSubmit={this.props.handleSubmit(this.onSubmit)}
+          >
 
-              <Field
-                className={style.input}
-                name="name"
-                component={Input}
-                type="text"
-                label="Recipe Name"
-                placeholder="Healthy Salad"
-                required
-              />
+            <Field
+              className={style.input}
+              name="name"
+              component={Input}
+              type="input"
+              typeOf="text"
+              label="Recipe Name"
+              placeholder="Healthy Salad"
+              required
+            />
 
-              <Field
-                className={style.textArea}
-                name="ingredients"
-                component={Input}
-                type="textarea"
-                label="Ingredients"
-                placeholder="Ingredients separated by commas (,)"
-                required
-              />
+            <Field
+              className={style.textArea}
+              name="ingredients"
+              component={Input}
+              type="textarea"
+              label="Ingredients"
+              placeholder="Ingredients separated by commas (,)"
+              required
+            />
 
-              <ButtonGroup>
-                <Button
-                  className={style.submitBtn}
-                  type="submit"
-                >Add</Button>
-                <Button
-                  className={style.resetBtn}
-                  type="button"
-                  onClick={this.reset}
-                >Clear</Button>
-              </ButtonGroup>
-            </form>
-          </Modal.Body>
-        </Modal>
-      </section>
+            <ButtonGroup className={style.btnGroup}>
+              <Button
+                className={style.submitBtn}
+                type="submit"
+              >{editing ? 'Update' : 'Add'}</Button>
+              <Button
+                className={style.resetBtn}
+                type="button"
+                onClick={this.reset}
+              >Clear</Button>
+            </ButtonGroup>
+          </form>
+        </Modal.Body>
+      </Modal>
     );
   }
 }

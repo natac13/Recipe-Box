@@ -46,10 +46,11 @@ export default class RecipeBox extends PureComponent {
   }
 
   createListItem = (ingredient, i) => {
-    const [toAdd, amount] = ingredient.split(' ');
+    const [toAdd, ...amount] = ingredient.split(' ');
+    console.log(amount)
     return (
       <ListGroupItem key={i} className={style.ingredient}>
-        {`${capitalize(toAdd)} - ${amount}`}
+        {`${capitalize(toAdd)} - ${amount.join(' ')}`}
       </ListGroupItem>
     );
   };
@@ -58,11 +59,12 @@ export default class RecipeBox extends PureComponent {
     console.log(recipes)
     return recipes.map((recipe, i) => (
       <Panel
+        className={style.recipeBox}
         header={recipe.name}
         eventKey={i}
         key={i}
       >
-        <ListGroup className={style.ingredientsList}>
+        <ListGroup>
           {recipe.ingredients.map(this.createListItem)}
         </ListGroup>
         <ButtonGroup>
@@ -96,11 +98,6 @@ export default class RecipeBox extends PureComponent {
           type="button"
           onClick={() => this.props.actions.show()}
         >Add New Recipe</Button>
-        <Button
-          className={style.addBtn}
-          type="button"
-          onClick={() => this.props.actions.save()}
-        >save</Button>
         <Accordion>
           {this.createPanels(recipes)}
 

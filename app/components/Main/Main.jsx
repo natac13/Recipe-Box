@@ -21,16 +21,16 @@ function Main(props) {
 
   return (
     <div className={wrapperClass}>
-        <Header />
-        <RecipeBox
-          actions={actions}
-          recipes={recipeForm.recipes}
-        />
-        <RecipeForm
-          actions={actions}
-          visible={recipeForm.visible}
-          editing={recipeForm.editing}
-        />
+      <Header />
+      <RecipeBox
+        actions={actions}
+        recipes={recipeForm.recipes}
+      />
+      <RecipeForm
+        actions={actions}
+        visible={recipeForm.visible}
+        editing={recipeForm.editing}
+      />
     </div>
   );
 }

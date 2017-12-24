@@ -55,7 +55,12 @@ h4 {
   line-height: 1.4;
   font-size: ms(2);
 }
-
+.modal-container {
+  position: relative;
+}
+.modal-container .modal, .modal-container .modal-backdrop {
+  position: absolute;
+}
 @media (min-width:20em) {
   /* smartphones, iPhone, portrait 480x320 phones */
 

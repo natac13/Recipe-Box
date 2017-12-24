@@ -1,19 +1,48 @@
-.ingredient {
+.wrapper {
+  margin-top: 2em;
+  background: $forth-color;
+  width: 50vw;
+  min-height: 70vh;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 0 7px 1px $forth-color;
+}
 
+.recipe-box {
+  margin-top: 1.5em;
+  min-width: 30vw;
+  text-align: center;
+
+  div[class=panel-heading] {
+    background: $third-color;
+
+    h4 {
+      font-size: ms(1);
+      color: $forth-color;
+    }
+  }
+}
+
+.ingredient {
 }
 
 .ingredients-list {
-
+  margin-top: 1em;
 }
 
 .edit-btn {
-
+  composes: btn;
+  font-size: ms(0);
 }
 
 .delete-btn {
-
+  composes: btn;
+  font-size: ms(0);
 }
 
 .add-btn {
-
+  composes: btn;
+  align-self: stretch;
 }

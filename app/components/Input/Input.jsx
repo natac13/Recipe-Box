@@ -18,6 +18,7 @@ function Input(props) {
     input,
     label,
     type,
+    typeOf,
     meta: { error, warning, touched },
     addon,
   } = props;
@@ -39,13 +40,14 @@ function Input(props) {
       <FormGroup controlId={input.name} validationState={validationState}>
         <ControlLabel>{label}</ControlLabel>
         <InputGroup>
-        <FormControl
-          type={type}
-          { ...input }
-        />
-        {addon && <InputGroup.Addon>{addon}</InputGroup.Addon>}
-        <FormControl.Feedback />
-        { message }
+          <FormControl
+            componentClass={type}
+            type={typeOf}
+            { ...input }
+          />
+          {addon && <InputGroup.Addon>{addon}</InputGroup.Addon>}
+          <FormControl.Feedback />
+          { message }
         </InputGroup>
       </FormGroup>
     </section>
@@ -57,6 +59,7 @@ Input.propTypes = {
   input: PropTypes.object,
   label: PropTypes.string,
   type: PropTypes.string,
+  typeOf: PropTypes.string,
   meta: PropTypes.object,
   addon: PropTypes.string,
 };

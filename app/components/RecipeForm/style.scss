@@ -1,0 +1,50 @@
+.form {
+  background: $forth-color;
+  color: $primary-color;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  min-height: 45vh;
+  justify-content: space-evenly;
+
+}
+
+.wrapper {
+  box-shadow: 0 0 43px 2px $third-color;
+
+  div[class=modal-header] {
+    text-align: center;
+    background: $primary-color;
+    color: $forth-color;
+    font-family: $title-font;
+  }
+
+  div[class=modal-body] {
+    padding: 0;
+  }
+
+}
+
+.input {
+
+}
+
+.text-area {
+  input {
+    min-height: 4.32em;
+  }
+}
+
+.btn-group {
+  min-width: 12em;
+}
+
+.submit-btn {
+  composes: btn;
+  width: 50%;
+}
+
+.reset-btn {
+  composes: btn;
+  width: 50%;
+}
